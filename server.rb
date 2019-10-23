@@ -4,9 +4,20 @@ this_dir = File.expand_path(File.dirname(__FILE__))
 lib_dir = File.join(this_dir, 'lib')
 $LOAD_PATH.unshift(lib_dir) unless $LOAD_PATH.include?(lib_dir)
 
-require 'grpc'
+require 'config'
+require 'socket'
+require 'grpc_kit'
 require 'schedule/schedule_services_pb'
 
+Config.setup do |config|
+    config.const_name = 'Settings'
+    config.use_env = true
+    config.env_prefix = 'RUBY_ENV'
+    config.env_separator = '__'
+    config.env_converter = :downcase
+    config.env_parse_values = true
+end
+Config.load_and_set_settings(Config.setting_files("./config", ENV['RUBY_ENV']))
 # GreeterServer is simple server that implements the Schedule ScheduleService server.
 class GreeterServer < Schedule::ScheduleService::Service
     # say_hello implements the SayHello rpc method.
@@ -18,13 +29,15 @@ end
 # main starts an RpcServer that receives requests to GreeterServer at the sample
 # server port.
 def main
-    s = GRPC::RpcServer.new
-    s.add_http2_port('0.0.0.0:50051', :this_port_is_insecure)
-    s.handle(GreeterServer)
-    # Runs the server with SIGHUP, SIGINT and SIGQUIT signal handlers to 
-    #   gracefully shutdown.
-    # User could also choose to run server via call to run_till_terminated
-    s.run_till_terminated_or_interrupted([1, 'int', 'SIGQUIT'])
+    sock = TCPServer.new(Settings.port)
+    server = GrpcKit::Server.new
+    server.handle(GreeterServer.new)
+    puts "GRPC server started at #{Settings.port}"
+
+    loop do
+        conn = sock.accept
+        server.run(conn)
+    end
 end
 
 main
