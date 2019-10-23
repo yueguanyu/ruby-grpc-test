@@ -7,6 +7,7 @@ $LOAD_PATH.unshift(lib_dir) unless $LOAD_PATH.include?(lib_dir)
 require 'config'
 require 'socket'
 require 'grpc_kit'
+require 'pry'
 require 'schedule/schedule_services_pb'
 
 Config.setup do |config|
@@ -20,9 +21,11 @@ end
 Config.load_and_set_settings(Config.setting_files("./config", ENV['RUBY_ENV']))
 # GreeterServer is simple server that implements the Schedule ScheduleService server.
 class GreeterServer < Schedule::ScheduleService::Service
-    # say_hello implements the SayHello rpc method.
-    def list_schedule(hello_req, _unused_call)
-        Schedule::Schedule.new(message: "Hello #{hello_req.name}")
+    def initialize
+        @cookies = [
+            'People are naturally attracted to you.',
+            'You learn from your mistakes... You will learn a lot today.'
+        ]
     end
 end
 
@@ -39,5 +42,7 @@ def main
         server.run(conn)
     end
 end
+
+require './handler/greeter'
 
 main

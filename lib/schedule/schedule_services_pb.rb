@@ -14,7 +14,7 @@ module Schedule
       self.unmarshal_class_method = :decode
       self.service_name = 'schedule.ScheduleService'
 
-      rpc :ListSchedule, ListScheduleRequest, stream(Schedule)
+      rpc :ListSchedule, ListScheduleRequest, Schedule
       rpc :CreateOneTimeGrpcSchedule, CreateGrpcScheduleRequest, Schedule
       rpc :CreateGrpcSchedule, CreateGrpcScheduleRequest, Schedule
       rpc :UpdateGrpcSchedule, UpdateGrpcScheduleRequest, Schedule

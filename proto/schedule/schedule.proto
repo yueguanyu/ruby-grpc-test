@@ -2,7 +2,7 @@ syntax = "proto3";
 package schedule;
 
 service ScheduleService {
-    rpc ListSchedule (ListScheduleRequest) returns (stream Schedule) {}
+    rpc ListSchedule (ListScheduleRequest) returns (Schedule) {}
     rpc CreateOneTimeGrpcSchedule (CreateGrpcScheduleRequest) returns (Schedule) {}
     rpc CreateGrpcSchedule (CreateGrpcScheduleRequest) returns (Schedule) {}
     rpc UpdateGrpcSchedule (UpdateGrpcScheduleRequest) returns (Schedule) {}
@@ -13,7 +13,7 @@ service ScheduleService {
 }
 
 message ListScheduleRequest {
-    int32 type = 1; // 0: All; 1: Cron; 2: Onetime
+    string name = 1;
 }
 
 message CreateGrpcScheduleRequest {

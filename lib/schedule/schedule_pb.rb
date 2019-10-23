@@ -6,7 +6,7 @@ require 'google/protobuf'
 Google::Protobuf::DescriptorPool.generated_pool.build do
   add_file("schedule/schedule.proto", :syntax => :proto3) do
     add_message "schedule.ListScheduleRequest" do
-      optional :type, :int32, 1
+      optional :name, :string, 1
     end
     add_message "schedule.CreateGrpcScheduleRequest" do
       optional :schedule, :message, 2, "schedule.Schedule"

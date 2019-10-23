@@ -7,6 +7,7 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
       zeitwerk (~> 2.1, >= 2.1.8)
+    coderay (1.1.2)
     concurrent-ruby (1.1.5)
     config (2.0.0)
       activesupport (>= 4.2)
@@ -45,7 +46,7 @@ GEM
       dry-logic (~> 1.0, >= 1.0.2)
     ds9 (1.4.1)
       mini_portile2 (>= 2.2.0)
-    google-protobuf (3.9.2)
+    google-protobuf (3.9.2-universal-darwin)
     googleapis-common-protos-types (1.0.4)
       google-protobuf (~> 3.0)
     grpc_kit (0.3.8)
@@ -54,8 +55,12 @@ GEM
       googleapis-common-protos-types (>= 1.0.2)
     i18n (1.7.0)
       concurrent-ruby (~> 1.0)
+    method_source (0.9.2)
     mini_portile2 (2.4.0)
     minitest (5.12.2)
+    pry (0.12.2)
+      coderay (~> 1.1.0)
+      method_source (~> 0.9.0)
     thread_safe (0.3.6)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
@@ -67,6 +72,7 @@ PLATFORMS
 DEPENDENCIES
   config
   grpc_kit (>= 0.3.8)
+  pry
 
 BUNDLED WITH
    1.17.3
