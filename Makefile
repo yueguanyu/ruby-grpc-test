@@ -12,7 +12,7 @@ server:
 
 .PHONY: proto
 proto:
-	grpc_tools_ruby_protoc -I ./proto --ruby_out=./proto --grpc_out=./proto ./proto/**/*.proto
+	grpc_tools_ruby_protoc -I ./proto --ruby_out=lib --grpc_out=lib ./proto/**/*.proto
 
 .PHONY:docker
 docker:

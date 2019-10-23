@@ -25,10 +25,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :brokerEvent, :message, 3, "schedule.BrokerEvent"
     end
     add_message "schedule.Schedule" do
-      optional :period, :string, 1
-      optional :scheduleName, :string, 2
-      optional :ScheduleComment, :string, 3
-      optional :Id, :int32, 4
+      optional :message, :string, 1
     end
     add_message "schedule.GrpcCall" do
       optional :ClientName, :string, 1

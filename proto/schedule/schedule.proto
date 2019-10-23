@@ -37,10 +37,7 @@ message UpdateBrokerScheduleRequest {
 }
 
 message Schedule {
-    string period = 1;
-    string scheduleName = 2;
-    string ScheduleComment = 3;
-    int32   Id = 4;
+    string message = 1;
 }
 
 message GrpcCall {

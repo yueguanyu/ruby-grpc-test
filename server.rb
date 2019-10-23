@@ -5,13 +5,13 @@ lib_dir = File.join(this_dir, 'lib')
 $LOAD_PATH.unshift(lib_dir) unless $LOAD_PATH.include?(lib_dir)
 
 require 'grpc'
-require 'helloworld_services_pb'
+require 'schedule/schedule_services_pb'
 
-# GreeterServer is simple server that implements the Helloworld Greeter server.
-class GreeterServer < Helloworld::Greeter::Service
+# GreeterServer is simple server that implements the Schedule ScheduleService server.
+class GreeterServer < Schedule::ScheduleService::Service
     # say_hello implements the SayHello rpc method.
-    def say_hello(hello_req, _unused_call)
-        Helloworld::HelloReply.new(message: "Hello #{hello_req.name}")
+    def list_schedule(hello_req, _unused_call)
+        Schedule::Schedule.new(message: "Hello #{hello_req.name}")
     end
 end
 
