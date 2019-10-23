@@ -1,0 +1,22 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    ds9 (1.4.1)
+      mini_portile2 (>= 2.2.0)
+    google-protobuf (3.9.2)
+    googleapis-common-protos-types (1.0.4)
+      google-protobuf (~> 3.0)
+    grpc_kit (0.3.8)
+      ds9 (>= 1.4.0)
+      google-protobuf (>= 3.7.0)
+      googleapis-common-protos-types (>= 1.0.2)
+    mini_portile2 (2.4.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  grpc_kit (>= 0.3.8)
+
+BUNDLED WITH
+   2.0.2
